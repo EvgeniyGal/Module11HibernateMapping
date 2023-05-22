@@ -5,3 +5,5 @@ build/
 !**/src/test/**/build/
 
 .idea
+mydb.mv.db
+mydb.trace.db
