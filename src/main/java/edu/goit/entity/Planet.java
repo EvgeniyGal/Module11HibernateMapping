@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,6 +3,7 @@ package edu.goit;
 import edu.goit.entity.Client;
 import edu.goit.service.ClientCrudService;
 import edu.goit.service.PlanetCrudService;
+import edu.goit.service.TicketCrudService;
 import edu.goit.util.HibernateUtil;
 import org.flywaydb.core.Flyway;
 
@@ -19,6 +20,8 @@ public class Main {
 
         ClientCrudService clientCrudService = new ClientCrudService();
         PlanetCrudService planetCrudService = new PlanetCrudService();
+        TicketCrudService ticketCrudService = new TicketCrudService();
+
 
         System.out.println(clientCrudService.get(2L));
         Client client = clientCrudService.get(4L).orElseThrow();
@@ -32,6 +35,8 @@ public class Main {
         System.out.println(clientCrudService.get(6L));
 
         System.out.println(planetCrudService.get("SAT"));
+
+        System.out.println(ticketCrudService.get(1L));
 
         HibernateUtil.getInstance().close();
 
