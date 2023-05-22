@@ -19,11 +19,12 @@ public class Ticket {
     private long id;
     @Column(name = "created_at")
     private ZonedDateTime created_at;
-    @Column(name = "client_id")
+    @ManyToOne
+    @JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "CLIENT_ID_FK"))
     private Client client;
-    @Column(name = "from_planet_id")
-    private Planet from_planet_id;
-    @Column(name = "to_planet_id")
-    private Planet to_planet_id;
+    @JoinColumn(name = "from_planet_id", foreignKey = @ForeignKey(name = "FROM_PLANET_ID_FK"))
+    private String from_planet_id;
+    @JoinColumn(name = "to_planet_id", foreignKey = @ForeignKey(name = "TO_PLANET_ID_FK"))
+    private String to_planet_id;
 
 }
