@@ -1,6 +1,5 @@
 package edu.goit.service;
 
-import edu.goit.entity.Planet;
 import edu.goit.entity.Ticket;
 import edu.goit.util.HibernateUtil;
 import org.hibernate.Session;
