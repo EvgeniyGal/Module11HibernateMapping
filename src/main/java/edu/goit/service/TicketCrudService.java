@@ -17,32 +17,32 @@ public class TicketCrudService {
             return Optional.of(session.byId(Ticket.class).load(id));
         }
     }
-//
-//    public void delete(Planet planet) {
-//        try (Session session = sessionFactory.openSession()) {
-//            if (get(planet.getId()).isPresent()) {
-//                Transaction transaction = session.beginTransaction();
-//                session.remove(planet);
-//                transaction.commit();
-//            }
-//        }
-//    }
-//
-//    public void create(Planet planet) {
-//        try (Session session = sessionFactory.openSession()) {
-//            Transaction transaction = session.beginTransaction();
-//            session.persist(planet);
-//            transaction.commit();
-//        }
-//    }
-//
-//    public void update(Planet planet) {
-//        try (Session session = sessionFactory.openSession()) {
-//            if (get(planet.getId()).isPresent()) {
-//                Transaction transaction = session.beginTransaction();
-//                session.merge(planet);
-//                transaction.commit();
-//            }
-//        }
-//    }
+
+    public void delete(Ticket ticket) {
+        try (Session session = sessionFactory.openSession()) {
+            if (get(ticket.getId()).isPresent()) {
+                Transaction transaction = session.beginTransaction();
+                session.remove(ticket);
+                transaction.commit();
+            }
+        }
+    }
+
+    public void create(Ticket ticket) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.persist(ticket);
+            transaction.commit();
+        }
+    }
+
+    public void update(Ticket ticket) {
+        try (Session session = sessionFactory.openSession()) {
+            if (get(ticket.getId()).isPresent()) {
+                Transaction transaction = session.beginTransaction();
+                session.merge(ticket);
+                transaction.commit();
+            }
+        }
+    }
 }

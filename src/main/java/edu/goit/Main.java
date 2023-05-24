@@ -1,6 +1,7 @@
 package edu.goit;
 
 import edu.goit.entity.Client;
+import edu.goit.entity.Ticket;
 import edu.goit.service.ClientCrudService;
 import edu.goit.service.PlanetCrudService;
 import edu.goit.service.TicketCrudService;
@@ -22,7 +23,6 @@ public class Main {
         PlanetCrudService planetCrudService = new PlanetCrudService();
         TicketCrudService ticketCrudService = new TicketCrudService();
 
-
         System.out.println(clientCrudService.get(2L));
         Client client = clientCrudService.get(4L).orElseThrow();
         client.setName("Update Name");
@@ -36,6 +36,10 @@ public class Main {
 
         System.out.println(planetCrudService.get("SAT"));
 
+        System.out.println(ticketCrudService.get(1L));
+        Ticket ticket = ticketCrudService.get(1L).orElseThrow();
+        ticket.setClient(clientCrudService.get(7L).orElseThrow());
+        ticketCrudService.update(ticket);
         System.out.println(ticketCrudService.get(1L));
 
         HibernateUtil.getInstance().close();
