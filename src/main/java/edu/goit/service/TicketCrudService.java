@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.Optional;
+import java.util.zip.DataFormatException;
 
 public class TicketCrudService {
     public final SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
@@ -29,10 +30,21 @@ public class TicketCrudService {
 
     public void create(Ticket ticket) {
         try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            session.persist(ticket);
-            transaction.commit();
+            if (isValidTicketData(ticket)) {
+                Transaction transaction = session.beginTransaction();
+                session.persist(ticket);
+                transaction.commit();
+            }
         }
+    }
+
+    private boolean isValidTicketData(Ticket ticket) {
+        ClientCrudService clientCrudService = new ClientCrudService();
+        PlanetCrudService planetCrudService = new PlanetCrudService();
+        return ticket.getClient() != null && ticket.getFrom_planet_id() != null && ticket.getTo_planet_id() != null
+                && clientCrudService.get(ticket.getClient().getId()).isPresent()
+                && planetCrudService.get(ticket.getFrom_planet_id().getId()).isPresent()
+                && planetCrudService.get(ticket.getTo_planet_id().getId()).isPresent();
     }
 
     public void update(Ticket ticket) {
