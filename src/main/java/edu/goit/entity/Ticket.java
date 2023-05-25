@@ -1,10 +1,7 @@
 package edu.goit.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.ZonedDateTime;
 
@@ -20,14 +17,11 @@ public class Ticket {
     private long id;
     @Column(name = "created_at")
     private ZonedDateTime created_at;
-    @ManyToOne
-    @JoinColumn(name = "client_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     private Client client;
-    @ManyToOne
-    @JoinColumn(name = "from_planet_id")
-    private Planet from_planet_id;
-    @ManyToOne
-    @JoinColumn(name = "to_planet_id")
-    private Planet to_planet_id;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    private Planet from_planet;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    private Planet to_planet;
 
 }

@@ -32,9 +32,11 @@ public class Main {
         clientCrudService.create(newClient);
         System.out.println(clientCrudService.get(11L));
         clientCrudService.delete(Client.builder().id(6L).build());
-        System.out.println(clientCrudService.get(6L));
+        System.out.println("Client id=3 has next tickets: " + clientCrudService.get(3L).orElseThrow().getTickets());
 
         System.out.println(planetCrudService.get("SAT"));
+        System.out.println("Planet id=SAT has next tickets to itself: " + planetCrudService.get("SAT").orElseThrow().getTo_planets());
+        System.out.println("Planet id=SAT has next tickets from itself: " + planetCrudService.get("SAT").orElseThrow().getFrom_planets());
 
         System.out.println(ticketCrudService.get(1L));
         Ticket ticket = ticketCrudService.get(1L).orElseThrow();

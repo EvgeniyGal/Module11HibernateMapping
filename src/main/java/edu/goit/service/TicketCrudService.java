@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.Optional;
-import java.util.zip.DataFormatException;
 
 public class TicketCrudService {
     public final SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
@@ -41,10 +40,10 @@ public class TicketCrudService {
     private boolean isValidTicketData(Ticket ticket) {
         ClientCrudService clientCrudService = new ClientCrudService();
         PlanetCrudService planetCrudService = new PlanetCrudService();
-        return ticket.getClient() != null && ticket.getFrom_planet_id() != null && ticket.getTo_planet_id() != null
+        return ticket.getClient() != null && ticket.getFrom_planet() != null && ticket.getTo_planet() != null
                 && clientCrudService.get(ticket.getClient().getId()).isPresent()
-                && planetCrudService.get(ticket.getFrom_planet_id().getId()).isPresent()
-                && planetCrudService.get(ticket.getTo_planet_id().getId()).isPresent();
+                && planetCrudService.get(ticket.getFrom_planet().getId()).isPresent()
+                && planetCrudService.get(ticket.getTo_planet().getId()).isPresent();
     }
 
     public void update(Ticket ticket) {
